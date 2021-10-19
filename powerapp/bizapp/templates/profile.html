@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block title %} | Profile Upadate {% endblock title %}
+
+
+
+<!-- content  -->
+{% block content %}
+<!-- profile content  -->
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text"><a href="{% url 'index' %}" class="btn">Home</a></p>
+                    <p class="card-text"><a href="{% url 'profile' %}" class="btn">Profile</a></p>
+                    <p class="card-text"><a href="{% url 'update' %}" class="btn">Profile Update</a></p>
+                    <p class="card-text"><a href="{% url 'password' %}" class="btn">Change Password</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-8">
+            <div class="card" style="width: 18rem;">
+                <img src="{{profile.image.url}}" class="card-img-top" width="80px">
+                <div class="card-body">
+                    <h5 class="card-title">{{profile.user.first_name}}</h5>
+                    <p class="card-text">{{profile.user.last_name}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">{{profile.phone}}</li>
+                    <li class="list-group-item">{{profile.address}}</li>
+                    <li class="list-group-item">{{profile.city}}</li>
+                    <li class="list-group-item">{{profile.state}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- profile content done -->
+{% endblock content %}
+<!-- content done -->

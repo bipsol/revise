@@ -1,0 +1,30 @@
+{% extends "base.html" %} 
+{% block title %} All Category {% endblock title %}
+
+<!-- content  -->
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <!--  -->
+        {% if categories %} 
+            {% for items in categories  %}
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-3 mt-3">
+                    <div class="card">
+                        <a href="{% url 'detail' items.id %}"><img src="{{items.image.url}}" class="card-img"></a> 
+                        <div class="card-body"> 
+                            <a href="{% url 'category' items.id %}">
+                                <h5 class="card-title">{{items.title}}</h5>
+                            </a>                    
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}            
+        {% endif %}
+<!--  -->
+{% endblock content %}
+    
+    
+
+
+<!-- content  -->

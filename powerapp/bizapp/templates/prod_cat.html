@@ -1,0 +1,36 @@
+{% extends "base.html" %} 
+{% block title %} Single Product Category {% endblock title %}
+
+<!-- content  -->
+
+{% block content %}
+  
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <!--  -->
+        {% if single %} 
+            {% for items in single  %}
+                <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-3 mt-3">
+                    <div class="card">
+                        <a href="{% url 'detail' items.id %}"><img src="{{items.image.url}}" class="card-img"></a> 
+                        <!-- <img src="{{items.image.url}}" class="card-img-top"> -->
+                        <div class="card-body"> 
+                            <a href="{% url 'detail' items.id %}">
+                                <h5 class="card-title">{{items.name}} title</h5>
+                            </a>
+                            <p class="card-text">Price:{{items.price}}</p>
+                            <p class="card-text">Available:{{items.available}}</p>
+                            <a href="#" class="btn btn-primary">Add to cart</a>
+                        </div>
+                    </div>
+                </div>              
+            {% endfor %}            
+        {% endif %}
+            
+    
+    {% endblock content %}
+    
+    
+
+
+<!-- content  -->

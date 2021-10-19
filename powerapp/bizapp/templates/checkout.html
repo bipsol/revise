@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+ {% block title %} |Cart Page {% endblock title %}
+ {% load mathfilters %}
+ {% load humanize %}
+
+
+ <!-- content  -->
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <table class="table table-striped">
+                <thead>
+                  <tr>  
+                    <th scope="col">Product</th>
+                    <th scope="col">Image</th>
+                    <!-- <th scope="col">Price</th> -->
+                    <th scope="col">Quantity</th>
+                    <!-- <th scope="col">Amount</th>  -->
+                  </tr>
+                </thead>
+                <tbody>        
+               
+                {% if cart %}
+    
+                  {% for item in cart %}
+                  <tr>
+                    <td>{{item.product.name}}</td>
+                    <td><img src="{{item.product.image.url}}" width="50px"></td>
+                    <td>{{item.quantity}}</td>
+                  </tr>              
+                  {% endfor %}              
+                {% endif %}
+              </tbody>
+              <tbody>
+                <tr>
+                  <!-- <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td> -->
+                  <td></td>
+                  <td></td>
+                  <td>Total:{{grand_total |floatformat:2 |intcomma}}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+          <div class="col-12 col-sm-6 col-md-6 col-lg-6 mt-2">
+              <form action=" {% url 'paidorder' %} " method="POST"> 
+                  {% csrf_token %}
+                  <div class="form-control">
+                      <input type="text" value="{{profile.first_name}}" placeholder="Fisrt Name">
+                  </div>
+                  <div class="form-control">
+                      <input type="text" value="{{profile.last_name}}" placeholder="Last Name">
+                  </div>
+                  <div class="form-control">
+                      <input type="text" value="{{profile.phone}}" placeholder="Phone Number">
+                  </div>
+                  <div class="form-control">
+                      <input type="text" value="{{profile.address}}" placeholder="Address">
+                  </div>
+                  <div class="form-control">
+                      <input type="text" value="{{profile.city}}" placeholder="City">
+                  </div>
+                  <div class="form-control">
+                      <input type="text" value="{{profile.state}}" placeholder="State">
+                  </div>
+                  <input type="hidden" name="gtotal" value="{{grand_total}}">
+                  <input type="hidden" name="order_no" value="{{order_code}}">
+                  <button type="submit" class="btn btn-success mt-5">Place Order</button>
+              </form>
+          </div>
+    </div>
+</div>  
+{% endblock content %}
+
+ <!-- content done -->

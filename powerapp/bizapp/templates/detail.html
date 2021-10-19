@@ -1,0 +1,36 @@
+{% extends "base.html" %} 
+{% block title %} Product Detail Page {% endblock title %}
+
+<!-- content  -->
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!--  -->
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3">
+            <div class="card">
+                <img src="{{detail.image.url}}" class="card-img-top">
+                <div class="card-body">
+                <h5 class="card-title">{{detail.name}}</h5>
+                <p class="card-text">Price:{{detail.price}}</p>
+                <p class="card-text">Available:{{detail.available}}</p>
+                <p class="card-text">Description:{{detail.description}}</p>
+                <form action="{% url 'shopcart' %}" method="POST">
+                    {% csrf_token %}               
+                <input type="number" name="quantity" value="1" min="{{detail.min_quantity}}" max="{{detail.max_quantity}}" style="width: 40px;" id="" >
+                <input type="hidden" name="pid" value="{{detail.id}}">
+                <button type="submit" class="btn btn-primary">Add to cart</button>
+                </form>
+                </div>
+            </div>
+        </div>
+        <!--  -->
+    </div>
+</div>
+    
+{% endblock content %}
+    
+    
+
+
+<!-- content  -->
